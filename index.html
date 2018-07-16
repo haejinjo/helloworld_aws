@@ -1,10 +1,217 @@
 <!DOCTYPE html>
+<!-- Thank you  Daniel Bruce at Entypo for the icons! -->
+<html lang="en">
 
-<html>
 <head>
+    <title> Haejin's Site </title>
+
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+    <link rel="stylesheet" type="text/css" href="./main.css">
+    <link rel="icon" type="image/png" href="images/">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
 
-<body>
-<p>Hello World! Haejin wuz here.</p>
+
+
+<body style="zoom:1;">
+    <div id="sidenav">
+    </div>
+    <!-- Navigation Bar -->
+    <header>
+        <ul class="navlist" style="list-style:none;">
+            <li class="nav_list-item" id="landingSite"></li>
+            <div id="nav-buttons">
+                <li class="nav_list-item">
+                    <a id="aboutme">About Me</a>
+                </li>
+                <li class="nav_list-item">
+                    <a id="contact">Contact</a>
+                </li>
+            </div>
+        </ul>
+    </header>
+
+    <div class="wrapper">
+        <!-- First Impressions Count ;) -->
+        <section id="intro">
+
+            <div class="intro_couplet">
+                <div class="intro-left">
+                    <img id="logo" src="images/momIconTransparent.png">
+                </div>
+
+                <div class="intro-right">
+                    <h1>haejin jo</h1>
+                    <div id="short-bio">
+                        <h2>
+                            I'm a rising senior at
+                            <a href="https://ucla.edu">UCLA</a> and
+                            <a href="https://www.kwangjufs.org/">Kwangju Foreign School</a> alumnus.
+                            <br> I enjoy writing. I have a long list of failures and then some good stuff
+                            <a id="asterisk">
+                                <sup>*</sup>
+                            </a>
+                            <br>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cute lil Hobbies-->
+        <section id="aboutbar">
+
+            <div id="hobby-header">
+                <h2>Currently</h2>
+            </div>
+
+            <div id="hobby-images">
+                <img class="hobby-img" src=images/note.svg>
+                <img class="hobby-img" src=images/book.svg>
+                <img class="hobby-img" src=images/tree.svg>
+            </div>
+            <ul class="hobbytext">
+
+
+                <li id="hobby-item">
+                    <p>
+                        <h3>LISTENING</h3>
+
+                        <p>Because The Internet -- Childish Gambino</p>
+                    </p>
+                </li>
+                <li id="hobby-item">
+                    <p>
+                        <h3>READING</h3>
+
+                        <p>Just Mercy by Bryan Stevenson
+                            <br> Consider the Lobster by David Foster Wallace</p>
+                    </p>
+                </li>
+                <li id="hobby-item">
+                    <p>
+                        <h3>LEARNING</h3>
+
+                        <p>Ice Skating, Korean Case Stacking Phenomenon</p>
+                    </p>
+                </li>
+            </ul>
+
+        </section>
+
+        <!-- Yung Portfolio -->
+        <section id="projects">
+            <h2 style="text-align: center;"> Little Milestones </h2>
+            <div class="projects-container">
+                <a href="https://itunes.apple.com/us/app/impromptu-daily-creative-writing-practice/id1270831577?mt=8">
+                    <div class="project-link-wrapper">
+                        <img class="project-link-img" src="images/impromptuLogo.png">
+                        <div class="project-link-content">
+                            <h3 class="link-content__header"> Impromptu, for Daily Creative Writing</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./blog/_posts/2018-05-21-spikr.ext">
+                    <div class="project-link-wrapper">
+
+                        <img class="project-link-img" src="images/praatpic.png">
+                        <div class="project-link-content">
+                            <h3 class="link-content__header"> Computer Speech Synthesis </h3>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="./blog/_posts/2018-05-21-breathr-web-app.ext">
+                    <div class="project-link-wrapper">
+                        <img class="project-link-img" src="images/breathrLogin.png">
+                        <div class="project-link-content">
+                            <h3 class="link-content__header"> Breathr Login Flow </h3>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Contact Footer!  -->
+        <section id="footer">
+
+            <h2> Let's start talking! </h2>
+            <p>No, really. I think we'd be great together.</p>
+            <p>You may formally request my presence at</p>
+            <h2>professionalhaejin@gmail.com</h2>
+            See all the stuff on here and more in
+            <a href="./files/Jo_Haejin_Resume.pdf">resume</a> form.
+            <div style="height:90px"></div>
+            <p>Or be my friend on</p>
+            <div id="social-button-wrapper">
+                <a href="https://github.com/haejinjo" class="hvr-wobble-vertical">
+                    <img class="logo-img" src=images/github.png>
+                </a>
+                <a href="https://www.instagram.com/haejfundmanager" class="hvr-wobble-vertical">
+                    <img class="logo-img" src=images/insta.png>
+                </a>
+                <a href="https://www.linkedin.com/in/haejin-jo-27b212b8?trk=nav_responsive_tab_profile_pic" class="hvr-wobble-vertical">
+                    <img class="logo-img" src=images/linkedin.png>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- JAVASCRIPT START -->
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
+    <script type="text/javascript"> 
+
+        $(document).ready(function () {
+            var addSideNav = function () {
+                var count = $(".wrapper section").length;
+
+                for (var i = 0; i < count; i++) {
+                    var circleNode = document.createElement("a");
+                    var targetId = $(".wrapper section")[i].id;
+                    circleNode.id = "nav2" + targetId;
+                    circleNode.href = "#" + document.getElementsByTagName("section")[i].id
+
+                    $(circleNode.id).click(function () {
+                        $('html,body').animate({
+                            scrollTop: $(targetId).offset().top
+                        }, 'slow');
+                    });
+                    document.getElementById("sidenav").appendChild(circleNode);
+                }
+            }
+
+            addSideNav();
+
+
+            $("#asterisk").click(function () {
+                $('html,body').animate({
+                    scrollTop: $("#projects").offset().top
+                },
+                    'slow');
+            });
+
+            $("#aboutme").click(function () {
+                $('html,body').animate({
+                    scrollTop: $("#aboutbar").offset().top
+                },
+                    'slow');
+            });
+
+            $("#contact").click(function () {
+                $('html,body').animate({
+                    scrollTop: $("#footer").offset().top - 90
+                },
+                    'slow');
+            });
+
+        });
+    </script>
 </body>
+
 </html>
