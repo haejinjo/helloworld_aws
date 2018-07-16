@@ -1,0 +1,354 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Noto Sans", sans-serif;
+}
+p,
+div {
+	font-family: "Nobile", Helvetica, Arial, sans-serif;
+	font-family: "Roboto", Helvetica, Times, serif;
+}
+
+.wrapper {
+	display: grid;
+    grid-template-rows: 100vh 100vh 100vh 100vh;
+    position: absolute;
+    top: 6rem;
+}
+
+/* nav {
+	font-size: 1.5rem;
+	padding: 1em;
+	grid-template-rows: 1fr;
+} */
+
+header {
+	display: flex;
+	justify-content: flex-end;
+    font-size: 1.4rem;
+    padding: 0.8em;
+    position: fixed;
+    z-index: 1;
+    background: linear-gradient(#FFF 60%, #FFFFFF00);
+	width: 100%;
+}
+
+.navlist {
+	display: flex;
+	justify-content: space-between;
+	flex: 1 1 0;
+}
+
+.nav_list-item {
+	padding: 0 20px;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 100vh;
+	position: relative;
+}
+
+#sidenav {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 15vh;
+	width: 3vw;
+	right: 2rem;
+	position: fixed;
+	top: 50vh;
+	z-index: 1;
+}
+
+#sidenav a {
+	width: 4vh;
+	height: 4vh;
+	background-color: lightgray;
+	border-radius: 50px;
+	opacity: 0.3;
+	transition: opacity 0.6s;
+	-webkit-transition: opacity 0.6s;
+}
+
+#sidenav a:hover {
+	background-color: darkgray;
+	opacity: 0.9;
+}
+
+#intro {
+	justify-content: center;
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+h1 {
+	font-size: 100px;
+	color: #181818;
+	text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+a,
+a:visited {
+	color: palevioletred;
+}
+
+a:hover {
+	color: powderblue;
+}
+
+.intro-left {
+	-webkit-animation-name: Floatingx;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+	-moz-animation-name: Floating;
+	-moz-animation-duration: 3s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: ease-in-out;
+
+	max-width: 200px;
+}
+
+.intro-left img {
+	max-width: 22em;
+}
+
+#social-button-wrapper {
+	flex-direction: row;
+	display: flex;
+	justify-content: center;
+	margin-top: auto;
+}
+
+#social-button-wrapper img {
+	height: 40px;
+	width: 50px;
+	margin: 50px;
+}
+
+#short-bio {
+	position: relative;
+	font-size: 20px;
+}
+
+.hobbytext {
+	list-style: none;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-row-gap: 10px;
+	align-items: center;
+}
+
+.hobby-img {
+	height: 20px;
+}
+
+#hobby-item {
+	justify-items: start;
+}
+
+#hobby-header {
+	margin: 4rem;
+}
+#hobby-images {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-row-gap: 60px;
+}
+
+#aboutbar {
+	display: grid;
+	grid-template-columns: 1fr 30px 2fr;
+	justify-items: start;
+	align-items: center;
+}
+
+#aboutbar:before {
+	width: 50vw;
+	content: "";
+	left: 25vw;
+	position: absolute;
+	border-bottom: 1px solid lightgrey;
+	padding-top: 1rem;
+}
+
+.projects {
+	display: grid;
+	margin: 4rem;
+}
+.projects-container {
+	padding-top: 20px;
+	display: grid;
+	grid-column-gap: 3em;
+	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+	align-items: center;
+	margin: 1rem;
+}
+.project-link-wrapper {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    min-height: 20em;
+    align-items: center;
+}
+.project-link-img {
+    display: flex;
+    height: auto;
+    width: 100%;
+    align-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+	.navlist {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	#nav-buttons {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	#short-bio {
+		font-size: 30px;
+	}
+
+	.projects {
+		height: 100vh;
+	}
+}
+
+#footer {
+	
+    display: flex;
+    flex-direction: column;
+    padding-left: 10rem;
+
+}
+
+@media only screen and (min-width: 968px) {
+	#intro {
+		display: flex;
+		flex: column wrap;
+		/* 		background-color: lightslategray; */
+		font-size: 1rem;
+	}
+
+	.intro_couplet {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+	}
+}
+
+@-webkit-keyframes Floatingx {
+	from {
+		-webkit-transform: translate(0, 0px);
+	}
+	65% {
+		-webkit-transform: translate(0, 15px);
+	}
+	to {
+		-webkit-transform: translate(0, -0px);
+	}
+}
+
+@-moz-keyframes Floating {
+	from {
+		-moz-transform: translate(0, 0px);
+	}
+	65% {
+		-moz-transform: translate(0, 15px);
+	}
+	to {
+		-moz-transform: translate(0, -0px);
+	}
+}
+
+/* Wobble Vertical */
+@-webkit-keyframes hvr-wobble-vertical {
+	16.65% {
+		-webkit-transform: translateY(8px);
+		transform: translateY(8px);
+	}
+	33.3% {
+		-webkit-transform: translateY(-6px);
+		transform: translateY(-6px);
+	}
+	49.95% {
+		-webkit-transform: translateY(4px);
+		transform: translateY(4px);
+	}
+	66.6% {
+		-webkit-transform: translateY(-2px);
+		transform: translateY(-2px);
+	}
+	83.25% {
+		-webkit-transform: translateY(1px);
+		transform: translateY(1px);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+@keyframes hvr-wobble-vertical {
+	16.65% {
+		-webkit-transform: translateY(8px);
+		transform: translateY(8px);
+	}
+	33.3% {
+		-webkit-transform: translateY(-6px);
+		transform: translateY(-6px);
+	}
+	49.95% {
+		-webkit-transform: translateY(4px);
+		transform: translateY(4px);
+	}
+	66.6% {
+		-webkit-transform: translateY(-2px);
+		transform: translateY(-2px);
+	}
+	83.25% {
+		-webkit-transform: translateY(1px);
+		transform: translateY(1px);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+.hvr-wobble-vertical {
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px transparent;
+}
+.hvr-wobble-vertical:hover,
+.hvr-wobble-vertical:focus,
+.hvr-wobble-vertical:active {
+	-webkit-animation-name: hvr-wobble-vertical;
+	animation-name: hvr-wobble-vertical;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
