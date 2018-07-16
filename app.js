@@ -8,9 +8,10 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 });
 
+app.get('/submit', function (req, res) {
+    res.sendFile(__dirname + '/blog-submit.html');
+});
+
 app.use(express.static(path.join(__dirname, 'assets')));
 
-app.get('/styles', function (req, res) {
-    res.sendFile(__dirname + '/main.css');
-});
 
