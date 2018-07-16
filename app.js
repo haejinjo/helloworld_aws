@@ -7,8 +7,9 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 });
 
+app.use(express.static(path.join(__dirname, 'assets')));
+
 app.get('/styles', function (req, res) {
     res.sendFile(__dirname + '/main.css');
 });
 
-app.use(express.static(__dirname, '/images'));
