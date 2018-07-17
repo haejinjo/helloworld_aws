@@ -17,6 +17,20 @@
         #editor {
             height: 30rem;
         }
+
+        #comment-box {
+            display: flex;
+            flex-direction: column;
+            height: 5rem;
+            width: 80vw;
+            overflow: scroll;
+            border: 1px;
+            border-style: solid;
+        }
+
+        #comment-box h3 {
+            justify-content: right;
+        }
     </style>
 
 </head>
@@ -27,7 +41,8 @@
 
     <button id="saveButton">Save Post Into DB</button>
 
-
+    <h1>Comments 4 all you h8terz</h1>
+    <div id="pseudo-editor"></div>
     <script>
 
         $(document).ready(function () {
@@ -55,16 +70,40 @@
             });
 
 
+            // Want this to happen by default on page load before user sees
+            // Get + display persistent old comments from posts database
+            $.get("/dbComments", function (data) {
+                console.log(data, " is the data");
+                for (let i = 0; i < data.length; i++) {
+                    $("#pseudo-editor").append(
+                        "<div id =\"comment-box\">" +
+                        "<h3>" +
+                        "Posted on " + data[i].entry_time.split("T")[0].replace(/-/g, "/") + " by dumb Anon" +
+                        "</h3>" +
+                        "<div id=\"comment-content\"" +
+                        data[i].content +
+                        "</div>" +
+                        "</div>"
+                    );
+                }
+            });
+
             $('#saveButton').click(function () {
 
+
+                // Visually show the new comment getting appended to existing comments for user
+                // let newComment = quill.getContents();
+                // let oldComments = quill2.getContents();
+                // let combinedComments = oldComments.concat(newComment);
+                // quill2.setContents(combinedComments);
+
+                // Grab text that user is trying to submit, make it a JSON format
                 let text = quill.container.firstChild.innerHTML;
-
-                window.delta = quill.getContents();
-
                 let reqBody = {
                     "content": text,
                 };
 
+                // Post JSON formatted new comment to posts database
                 $.ajax({
                     type: "post",
                     data: JSON.stringify(reqBody),

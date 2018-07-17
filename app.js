@@ -39,6 +39,15 @@ app.route('/submit')
             console.log("1 record inserted");
         });
     })
+app.get('/dbComments', function getOldComments(req, res) {
+    let sqlCommand = "SELECT * FROM posts";
+
+    con.query(sqlCommand, function (err, rows) {
+        if (err) throw err;
+        console.log("Got 'em!")
+        res.send(rows);
+    });
+})
 
 // app.route('/blog')
 //     .get(function routeBlogGet(req, res) {
