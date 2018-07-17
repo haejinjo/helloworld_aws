@@ -6,6 +6,7 @@ let bodyparser = require('body-parser');
 let env = process.env.NODE_ENV || 'dev';
 let config = require('./config')[env];
 let secret = config.database;
+let secretServer = config.server;
 
 let con = mysql.createConnection({
     host: secret.host,
@@ -47,4 +48,4 @@ app.route('/submit')
 //         res.send('posted from blog');
 //     })
 
-app.listen(secret.port, () => console.log("Listening on port", secret.port));
+app.listen(secretServer.port, () => console.log("Listening on port", secretServer.port));
