@@ -9,40 +9,56 @@
     <script src="https://cdn.quilljs.com/1.1.3/quill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Patua+One" rel="stylesheet">
     <!--Thanks for the stylin', Quilljs!-->
     <link href="https://cdn.quilljs.com/1.1.3/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.1.3/quill.bubble.css" rel="stylesheet">
 
     <style>
         #editor {
-            height: 30rem;
+            height: 20rem;
         }
 
         #comment-box {
+
             display: flex;
             flex-direction: column;
             height: 5rem;
             width: 80vw;
+            font-family: 'Helvetica Neue', 'HelveticaNeue', 'Helvetica', 'Arial', 'sans-serif';
             overflow: scroll;
             border: 1px;
             border-style: solid;
         }
 
         #comment-box h3 {
+            font-family: 'Patua One', cursive;
             justify-content: right;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 1rem;
+            right: 2rem;
+            width: 4rem;
+            visibility: hidden;
         }
     </style>
 
 </head>
 
 <body>
+    <h1 style="font-family: 'Julius Sans One', sans-serif;">Comments, Questions, Concerns?</h1>
     <div id="toolbar"></div>
     <div id="editor"></div>
 
-    <button id="saveButton">Save Post Into DB</button>
+    <button style="height: 40px;" id="saveButton">Clik to Save Post</button>
+    <div style="height:20px"></div>
 
-    <h1>Comments 4 all you h8terz</h1>
     <div id="pseudo-editor"></div>
+
+    <img id="backToTop" src="https://png.icons8.com/nolan/50/000000/circled-up-2.png">
+
     <script>
 
         $(document).ready(function () {
@@ -65,7 +81,7 @@
                 modules: {
                     toolbar: toolbarOptions
                 },
-                placeholder: 'Compose an epic...',
+                placeholder: 'Type your (optionally derisive) thoughts here, until I turn this into a route for my personal blog post portal',
                 theme: 'snow'
             });
 
@@ -75,10 +91,13 @@
             $.get("/dbComments", function (data) {
                 console.log(data, " is the data");
                 for (let i = 0; i < data.length; i++) {
+                    let date = new Date(data[i].entry_time.split("T")[0].replace(/-/g, "/") + " " + data[i].entry_time.split("T")[1].substring(0, 7) + " UTC");
+                    date = date.toString().split(" GMT")[0];
+
                     $("#pseudo-editor").append(
                         "<div id =\"comment-box\">" +
                         "<h3>" +
-                        "Posted on " + data[i].entry_time.split("T")[0].replace(/-/g, "/") + " by dumb Anon" +
+                        "Posted on " + date + " by a lonely soul" +
                         "</h3>" +
                         "<div id=\"comment-content\"" +
                         data[i].content +
@@ -89,7 +108,10 @@
             });
 
             $('#saveButton').click(function () {
-
+                $("html, body").animate({ scrollTop: $(document).height() }, 1500);
+                $("#backToTop").animate({ opacity: 1 }, 'slow', function () {
+                    $("#backToTop").css("visibility", "visible");
+                });
 
                 // Visually show the new comment getting appended to existing comments for user
                 // let newComment = quill.getContents();
@@ -120,8 +142,27 @@
                         console.log("POST REQ ERROR : ", e);
                     }
                 });
+
+                $.get("/dbComments", function (data) {
+                    $("#pseudo-editor").append(
+                        "<div id =\"comment-box\">" +
+                        "<h3>" +
+                        "Posted on " + data[data.length - 1].entry_time.split("T")[0].replace(/-/g, "/") + " by dumb Anon" +
+                        "</h3>" +
+                        "<div id=\"comment-content\"" +
+                        data[data.length - 1].content +
+                        "</div>" +
+                        "</div>"
+                    );
+                })
             });
 
+            $("#backToTop").click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 1500);
+                $("#backToTop").animate({ opacity: 0 }, 'fast', function () {
+                    $("#backToTop").css("visibility", "hidden");
+                });
+            });
         });
     </script>
 
