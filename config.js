@@ -2,11 +2,11 @@ let config = {
 
     dev: {
         database: {
-            host: 'localhost',
-            port: '3001',
-            user: 'root',
+            host: 'portfolio-blog-posts.ctbfs0ayjwqq.us-west-1.rds.amazonaws.com',
+            port: '3306',
+            user: 'haejinjo',
             password: 'controle',
-            db: 'personal_site_blog'
+            db: 'portfolio_posts'
         }
     },
     production: {
