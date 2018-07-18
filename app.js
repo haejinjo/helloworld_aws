@@ -51,7 +51,7 @@ app.route('/submit')
     })
     .post(function routeSubmitPost(req, res) {
         let sqlCommand = ("INSERT INTO posts (`content`) VALUES ('" + req.body.content + "');").replace(/\//g, '\/').replace(/'/g, "'");
-
+        console.log("attempt to log ", sqlCommand);
         con.query(sqlCommand, function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
