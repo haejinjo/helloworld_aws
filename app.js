@@ -50,9 +50,9 @@ app.route('/submit')
         res.sendFile(__dirname + '/blog-submit.html');
     })
     .post(function routeSubmitPost(req, res) {
-        let sqlCommand = "INSERT INTO posts (`content`) VALUES ('" + req.body.content + "');";
-        let sqlCommand = sqlCommand.replace(/'/g, "\'")
+        let sqlCommand = "INSERT INTO posts (`content`) VALUES (\'" + String(req.body.content).replace(/'/g, "\\'") + "\');";
         console.log("attempt to log ", sqlCommand);
+        console.log(" and type of req.body.content is", typeof req.body.content);
         con.query(sqlCommand, function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
