@@ -15,10 +15,28 @@ let con = mysql.createConnection({
     database: secret.db,
 });
 
-con.connect(function (err) {
-    if (err) throw err;
-    console.log('Connected to mysql database');
-})
+function handleDisconnect() {
+    con.connect(function (err) {
+        if (err) {
+            console.log("Error connecting to db: ", err);
+            setTimeout(handleDisconnect, 2000);
+        }
+        else {
+            console.log('Connected to mysql database');
+        }
+    });
+
+    con.on("error", function (err) {
+        console.log("DB Error, ", err);
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            handleDisconnect();
+        } else {
+            throw err;
+        }
+    });
+}
+
+handleDisconnect();
 
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(bodyparser.json({ limit: '50mb' }));
@@ -32,7 +50,7 @@ app.route('/submit')
         res.sendFile(__dirname + '/blog-submit.html');
     })
     .post(function routeSubmitPost(req, res) {
-        let sqlCommand = "INSERT INTO posts (content) VALUES (\'" + req.body.content + "\');";
+        let sqlCommand = "INSERT INTO posts (content) VALUES (\'" + String(req.body.content).replace(/'/g, "\'") + "\');";
 
         con.query(sqlCommand, function (err, result) {
             if (err) throw err;
