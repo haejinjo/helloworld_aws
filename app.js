@@ -3,7 +3,7 @@ const app = express();
 let mysql = require('mysql');
 let path = require('path');
 let bodyparser = require('body-parser');
-let env = process.env.NODE_ENV || 'production';
+let env = process.env.NODE_ENV || 'dev';
 let config = require('./config')[env];
 let secret = config.database;
 let secretServer = config.server;
@@ -13,6 +13,7 @@ let con = mysql.createConnection({
     user: secret.user,
     password: secret.password,
     database: secret.db,
+    multipleStatements: true,
 });
 
 function handleDisconnect() {
@@ -30,9 +31,11 @@ function handleDisconnect() {
         console.log("DB Error, ", err);
         if (err.code === "PROTOCOL_CONNECTION_LOST") {
             handleDisconnect();
-        } else {
+        }
+        else {
             throw err;
         }
+
     });
 }
 
@@ -50,15 +53,21 @@ app.route('/submit')
         res.sendFile(__dirname + '/blog-submit.html');
     })
     .post(function routeSubmitPost(req, res) {
-        let sqlCommand = "INSERT INTO posts (`content`) VALUES (\'" + String(req.body.content).replace(/'/g, "\\'") + "\');";
+
+        let insertContent = req.body.content ? String(req.body.content).replace(/'/g, "\\'") : '';
+
+        let sqlCommand = "INSERT INTO posts VALUES(null, \'" + String(req.body.title).replace(/'/g, "\\'") + "\', \'" + insertContent + "\', NOW())";
+
         console.log("attempt to log ", sqlCommand);
-        console.log(" and type of req.body.content is", typeof req.body.content);
         con.query(sqlCommand, function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
         });
-    })
-app.get('/dbComments', function getOldComments(req, res) {
+        res.json(req.body);
+    });
+
+
+app.get('/blogPostData', function getOldPostContent(req, res) {
     let sqlCommand = "SELECT * FROM posts";
 
     con.query(sqlCommand, function (err, rows) {
@@ -66,7 +75,7 @@ app.get('/dbComments', function getOldComments(req, res) {
         console.log("Got 'em!")
         res.send(rows);
     });
-})
+});
 
 // app.route('/blog')
 //     .get(function routeBlogGet(req, res) {
