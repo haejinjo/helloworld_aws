@@ -1,0 +1,117 @@
+/* 
+Use the following CSS rules to specify the families:
+font-family: 'Nanum Myeongjo', serif;
+font-family: 'Roboto', sans-serif; */
+
+body {
+    animation: fadein 1.5s;
+    margin: 0;
+  }
+  .btn {
+    font-family: 'Roboto', sans serif;
+    border-radius: 5px;
+    background-color: #7f76b7;
+    box-shadow: 0px 5px 0px 0px #6156a5;
+    margin: 15px;
+    padding: 10px 5px;
+    text-decoration: none;
+    font-size: 0.5rem;
+    color: white;
+    display: block;
+    width: 60px;
+    text-align: center;
+  }
+  .btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+  
+  .btn:hover {
+      background-color: #8f87c0;
+  }
+  @keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  h1,h2,h3 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 700;
+  }
+  
+  #container a {
+    color: lightblue;
+  }
+  #container a:hover {
+    color: pink;
+    cursor: pointer;
+  }
+  
+  .post-title {
+    font-size: 1.5em;
+     margin-bottom: 10px;
+  }
+  
+  .post-date {
+    font-weight: 200;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  
+  #container {
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+    min-height: 100vh;
+  }
+  
+  header {
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    height: 100px;
+    width: 100%;
+    padding-left: 10px;
+    display: flex;
+  }
+  
+  header #left {
+    margin-right: auto;
+  }
+  
+  header:after {
+    height: 1px;
+    color: black;
+     border-top: .3rem solid black;
+    position: absolute;
+    display: block;
+    
+  }
+  
+  #post-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #posts-list {
+    display: grid;
+    grid-column: 2/5;
+    padding-top: 100px;
+    grid-gap: 1em;
+  }
+  
+  
+  
+  /* Tablets */
+  @media only screen and (min-width: 600px) {
+    
+  }
+  
+  /* Desktop */ 
+  @media only screen and (min-width: 768px) {
+    
+  }
+  
+  

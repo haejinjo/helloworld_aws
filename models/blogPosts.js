@@ -50,13 +50,15 @@ exports.create = function (req, callback) {
     });
 }
 
-exports.getAll = function (callback) {
+exports.get = function (id, callback) {
     let sqlCommand = "SELECT * FROM posts";
-
+    if (id) {
+        sqlCommand += " WHERE id=" + id;
+    }
     con.query(sqlCommand, function (err, rows) {
         if (err) {
-            console.log("ERROR RETRIEVING ALL POSTS FROM MYSQL: ", err);
-            return callback(err);
+            console.log("ERROR RETRIEVING POSTS FROM MYSQL: ", err);
+            return callback(err, null);
         }
         else {
             return callback(null, rows)
@@ -64,4 +66,6 @@ exports.getAll = function (callback) {
         console.log("Got 'em!")
         return rows;
     });
+
 }
+

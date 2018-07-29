@@ -1,3 +1,5 @@
+<!-- TODO: STOP RELOADING TO REFRESH AJAX RESULTS -->
+
 <!DOCTYPE html>
 
 <html>
@@ -105,7 +107,7 @@
 
             // Want this to happen by default on page load before user sees
             // Get + display persistent old comments from posts database
-            $.get("/blogPostData", function (data) {
+            $.get("/blog/postData", function (data) {
                 console.log(data, " is the data");
                 for (let i = 0; i < data.length; i++) {
                     let date = data[i].entry_time;

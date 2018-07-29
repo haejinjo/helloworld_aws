@@ -1,32 +1,67 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo|Roboto&amp;subset=greek-ext,korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="/styles/blog.css" rel="stylesheet">
+    <script>
+        let successCallback = function (data) {
+            document.getElementsByClassName("post-title")[0].innerHTML = data.title;
+            document.getElementsByClassName("post-content")[0].innerHTML = data.content;
+            document.getElementsByClassName("post-date")[0].replace('00/00/00', data.creationDate);
+        }
+
+        let errorCallback = function (err) {
+            console.log("There was an error getting this unique post's shit: ", err);
+        }
+        function yeah(cb1, cb2) {
+            $.ajax({
+                type: "get",
+                url: "/:id/deets",
+                headers: 'Content-Type: application/json',
+                success: function (res) {
+                    cb1(res)
+                },
+                error: function (e) {
+                    cb2(e);
+                },
+            });
+        }
+
+        yeah(successCallback, errorCallback);
+
+
+
+    </script>
 </head>
 
 <body>
     <div id="container">
         <header>
-            <a href="#" class="btn">Back Home </a>
+            <a href="http://localhost:3001" class="btn">Back Home </a>
         </header>
         <div id="post-container">
             <h1 class="post-title"> This is a blog post title. </h1>
             <h4 class="post-date"> Posted on 00/00/00</h4>
-            <p> This is a blog post's content. Apparently we had reached a great height in the atmosphere, for the sky was a
-                dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea
-                to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to
-                float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into
-                the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.</p>
-            <p> This is a blog post's content. Apparently we had reached a great height in the atmosphere, for the sky was a
-                dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea
-                to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to
-                float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into
-                the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.</p>
-            <p> This is a blog post's content. Apparently we had reached a great height in the atmosphere, for the sky was a
-                dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea
-                to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to
-                float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into
-                the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.</p>
+            <p> This is blog post content. </p>
         </div>
 
     </div>
+
+    <script>
+        window.onload = function () {
+            document.body.className += " loaded";
+        }
+        document.getElementsByClassName("btn").onclick = function () {
+            let xhttp = new XMLHTTPRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readystatechange === 4 && this.status === 200) {
+                    console.log("Home butotn request sent and headers received with", this.responseText);
+                }
+            }
+            xhttp.open('GET', "/takeMeHome", true);
+            xhttp.send();
+        }
+
+
+        document.getElementsByClassName("post-title")[0].innerHTML
+    </script>
 </body>

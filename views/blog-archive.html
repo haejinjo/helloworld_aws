@@ -1,0 +1,94 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo|Roboto&amp;subset=greek-ext,korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="/styles/blog-archive.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div id="left">
+            <h3 class="post-title"> Haejin's Blog Post Archives</h3>
+            <h4 class="post-date">Feel free to browse around.</h4>
+        </div>
+        <div id="right">
+            <a href="http://localhost:3001" class="btn">Back Home</a>
+        </div>
+    </header>
+    <div id="container">
+        <div id="posts-list">
+            <div id="post-container">
+                <a class="post-title">You say that you're leaving, but I don't think i should let go. It would've meant so much if you'd looked
+                    me in the eyeeee~~!</a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Synagogue.</a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Third time's the charm... </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> keke. do u saranghae? S2 </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Man naps on a hard wooden table after a night of no sleep are the best naps. </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Winnie Harlow is a dalmation babe. </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Blog post #4 baby!!! </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> This is a blog post title.</a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> You must think that I'm a fooOOOoOoool </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> I'm just protecting my innocence </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> You must think that I'm stooooopid </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> I'm going to vomit up all this food please don't make me eat more. </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+            <div id="post-container">
+                <a class="post-title"> Like Chocolate Cake Boi in Matilda </a>
+                <h4 class="post-date"> Posted on 00/00/00</h4>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.body.className += " loaded";
+        }
+
+        // pure JS way (not easy Jquery way)
+        function ready(callback) {
+            // in case this document is already rendered 
+            if (document.readyState !== 'loading') callback();
+
+            //modern browsers 
+            else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+
+            // older than IE 8 losers 
+            else document.attachEvent('onreadystatechange', function () {
+                if (document.readyState === 'complete') callback();
+            });
+        }
+    </script>
+</body>
