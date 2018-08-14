@@ -9,8 +9,7 @@ let secret = config.database;
 let secretServer = config.server;
 let favicon = require('serve-favicon');
 let blogRouter = require('./routes/blog'); // require the module/file containing code for handling particular sets of related "routes" or URL paths
-let apiRouter = require('./routes/api');
-// this imported code will define particular (prefix) routes for different parts of the site 
+let apiRouter = require('./routes/api'); // this imported code will define particular (prefix) routes for different parts of the site 
 
 /*
 TODO: BEST PRACTICES FOR EXPRESS APP ROUTING 

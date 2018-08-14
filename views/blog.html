@@ -24,7 +24,7 @@
             console.log("Successfully made the AJAX request to api route~!");
             document.getElementsByClassName("post-title")[0].innerHTML = data.title;
             document.getElementsByTagName("p")[0].innerHTML = data.content;
-            let x = document.getElementsByClassName("post-date")[0].outerHTML.replace(/00\/00\/00/g, data.creationDate);
+            document.getElementsByClassName("post-date")[0].innerHTML = document.getElementsByClassName("post-date")[0].innerHTML.replace(/00\/00\/00/g, new Date(Date.parse(data.entry_time)).toDateString());
         }
 
         let errorCallback = function (err) {
@@ -47,18 +47,11 @@
             });
         }
 
-
-
-        document.onreadystatechange = function (e) {
-            if (document.readyState === 'complete') {
-                //dom is ready, window.onload fires later
-
-            }
-        };
         window.onload = function (e) {
             //document.readyState will be complete, it's one of the requirements for the window.onload event to be fired
             yeah(successCallback, errorCallback);
         };
+
         document.getElementsByClassName("btn").onclick = function () {
             let xhttp = new XMLHTTPRequest();
             xhttp.onreadystatechange = function () {
