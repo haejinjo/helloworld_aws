@@ -61,10 +61,9 @@ exports.get = function (id, callback) {
             return callback(err, null);
         }
         else {
+            console.log("Got 'em!")
             return callback(null, rows)
         }
-        console.log("Got 'em!")
-        return rows;
     });
 
 }

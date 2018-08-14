@@ -2,35 +2,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo|Roboto&amp;subset=greek-ext,korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href="/styles/blog.css" rel="stylesheet">
-    <script>
-        let successCallback = function (data) {
-            document.getElementsByClassName("post-title")[0].innerHTML = data.title;
-            document.getElementsByClassName("post-content")[0].innerHTML = data.content;
-            document.getElementsByClassName("post-date")[0].replace('00/00/00', data.creationDate);
-        }
-
-        let errorCallback = function (err) {
-            console.log("There was an error getting this unique post's shit: ", err);
-        }
-        function yeah(cb1, cb2) {
-            $.ajax({
-                type: "get",
-                url: "/:id/deets",
-                headers: 'Content-Type: application/json',
-                success: function (res) {
-                    cb1(res)
-                },
-                error: function (e) {
-                    cb2(e);
-                },
-            });
-        }
-
-        yeah(successCallback, errorCallback);
-
-
-
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -47,21 +20,54 @@
     </div>
 
     <script>
-        window.onload = function () {
-            document.body.className += " loaded";
+        let successCallback = function (data) {
+            console.log("Successfully made the AJAX request to api route~!");
+            document.getElementsByClassName("post-title")[0].innerHTML = data.title;
+            document.getElementsByTagName("p")[0].innerHTML = data.content;
+            let x = document.getElementsByClassName("post-date")[0].outerHTML.replace(/00\/00\/00/g, data.creationDate);
         }
+
+        let errorCallback = function (err) {
+            console.log("There was an error getting this unique post's shit: ", err);
+        }
+
+        function yeah(cb1, cb2) {
+            let id = window.location.pathname.split('/').pop();
+
+            $.ajax({
+                url: '/api/' + id,
+                type: "GET",
+                success: function (res) {
+                    console.log("res is", res);
+                    cb1(res);
+                },
+                error: function (e) {
+                    cb2(e);
+                },
+            });
+        }
+
+
+
+        document.onreadystatechange = function (e) {
+            if (document.readyState === 'complete') {
+                //dom is ready, window.onload fires later
+
+            }
+        };
+        window.onload = function (e) {
+            //document.readyState will be complete, it's one of the requirements for the window.onload event to be fired
+            yeah(successCallback, errorCallback);
+        };
         document.getElementsByClassName("btn").onclick = function () {
             let xhttp = new XMLHTTPRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readystatechange === 4 && this.status === 200) {
-                    console.log("Home butotn request sent and headers received with", this.responseText);
+                    console.log("Home button request sent and headers received with", this.responseText);
                 }
             }
             xhttp.open('GET', "/takeMeHome", true);
             xhttp.send();
         }
-
-
-        document.getElementsByClassName("post-title")[0].innerHTML
     </script>
 </body>

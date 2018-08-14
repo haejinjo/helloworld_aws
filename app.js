@@ -9,6 +9,7 @@ let secret = config.database;
 let secretServer = config.server;
 let favicon = require('serve-favicon');
 let blogRouter = require('./routes/blog'); // require the module/file containing code for handling particular sets of related "routes" or URL paths
+let apiRouter = require('./routes/api');
 // this imported code will define particular (prefix) routes for different parts of the site 
 
 /*
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // gets Express to serv
 app.use(bodyparser.json({ limit: '50mb' }));
 
 app.use('/blog', blogRouter);
+app.use('/api', apiRouter);
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/views/index.html')
