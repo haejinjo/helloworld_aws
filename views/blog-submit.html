@@ -65,22 +65,6 @@
 
     <script>
 
-        let position = $(window).scrollTop();
-
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            if (scroll > position) {
-                $("#backToTop").animate({ opacity: 1 }, 'fast', function () {
-                    $("#backToTop").css("visibility", "visible");
-                });
-
-            } else {
-                $("#backToTop").css("visibility", "hidden");
-
-            }
-            position = scroll;
-        });
-
         $(document).ready(function () {
             let toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],
@@ -104,39 +88,18 @@
                 theme: 'snow'
             });
 
+            let cb = function (data) {
+                console.log(data);
+                console.log("The content posted is: ", data.content);
+                console.log("And the title posted is: ", data.title);
+            }
 
-            // Want this to happen by default on page load before user sees
-            // Get + display persistent old comments from posts database
-            $.get("/blog/postData", function (data) {
-                console.log(data, " is the data");
-                for (let i = 0; i < data.length; i++) {
-                    let date = data[i].entry_time;
-                    let momentDate = moment(date);
-                    momentDate = momentDate.format("MM-DD-YYYY hh:mm A").replace(/-/g, '/');
+            let errCB = function (e) {
+                console.log("BLOG POST REQ ERROR : ", e);
+            }
 
-                    $("#pseudo-editor").append(
-                        "<div id =\"comment-box\">" +
-                        "<h3>" +
-                        "Posted on " + momentDate + " by a lonely soul" +
-                        "</h3>" +
-                        "<h5>" +
-                        data[i].title +
-                        "</h5>" +
-                        "<div id=\"comment-content\">" +
-                        data[i].content +
-                        "</div>" +
-                        "</div>"
-                    );
-                }
-            });
-
-
-            // WHAT HAPPENS WHEN YOU CLICK SAVE
             $('#saveButton').click(function () {
                 // TODO: Toggle save button clickability depending on whether user has enterered sufficient info
-
-                // Scroll to bottom to see newest comment
-                $("html, body").animate({ scrollTop: $(document).height() }, 1500);
 
                 // Grab Title & HTML text that user is trying to submit
                 let title = $("#title-input").val();
@@ -148,29 +111,18 @@
                     "content": text,
                 };
 
-                let cb = function (data) {
-                    console.log(data);
-                    console.log("The content posted is: ", data.content);
-                    console.log("And the title posted is: ", data.title);
-                }
-
-                let errCB = function (e) {
-                    console.log("BLOG POST REQ ERROR : ", e);
-                }
                 // Post new title/content object to posts table in mysql (after formatting as JSON)
-
                 function yeah(cb1, cb2) {
                     $.ajax({
                         type: "post",
                         data: JSON.stringify(postReqBody),
-                        url: '/submit',
+                        url: '/blog/submit',
                         headers: {
                             'Content-Type': 'application/json',
                             'Accept': 'text'
                         },
                         success: function (res) {
-                            //cb1(res);
-                            location.reload();
+                            cb1(res);
                         },
                         error: function (err) {
                             cb2(err);
@@ -179,11 +131,6 @@
                 }
 
                 yeah(cb, errCB);
-            });
-
-            // WHAT HAPPENS WHEN YOU CLICK UP ARROW 
-            $("#backToTop").click(function () {
-                $("html, body").animate({ scrollTop: 0 }, 1500);
             });
 
         });
