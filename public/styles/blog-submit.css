@@ -1,0 +1,85 @@
+#editor {
+    height: 20rem;
+}
+
+#title-input {
+    width: 50%;
+}
+
+#comment-box {
+    display: flex;
+    flex-direction: column;
+    height: 5rem;
+    width: 80vw;
+    font-family: 'Helvetica Neue', 'HelveticaNeue', 'Helvetica', 'Arial', 'sans-serif';
+    overflow: scroll;
+    border: 1px;
+    border-style: solid;
+}
+
+#comment-box h3 {
+    font-family: 'Patua One', cursive;
+    justify-content: right;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    width: 4rem;
+    visibility: hidden;
+}
+
+.svg-success {
+    stroke-width: 2px;
+    stroke: #8EC343;
+    fill: none;
+    opacity: 1;
+    animation: fade 2s linear;
+}
+
+.svg-success circle {
+    stroke-dasharray: 76px, 76px;
+    stroke-dashoffset: 0px;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    -webkit-animation: checkmark-circle 0.6s ease-in-out forwards;
+    animation: checkmark-circle 0.6s ease-in-out forwards;
+}
+
+.svg-success path {
+    stroke-dasharray: 17px, 17px;
+    stroke-dashoffset: 0px;
+    -webkit-animation: checkmark 0.3s ease-in-out 0.1s backwards;
+    animation: checkmark 0.3s ease-in-out 0.1s backwards;
+}
+
+@keyframes fade {
+    0%,
+    100% {
+        opacity: 0
+    }
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 17px;
+    }
+
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes checkmark-circle {
+    0% {
+        stroke-dashoffset: 76px;
+    }
+
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
