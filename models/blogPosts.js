@@ -50,21 +50,27 @@ exports.create = function (req, callback) {
     });
 }
 
-exports.get = function (id, callback) {
-    let sqlCommand = "SELECT * FROM posts";
-    if (id) {
-        sqlCommand += " WHERE id=" + id;
+exports.get = function (descriptor, callback) {
+    let sqlCommand = "";
+
+    if (isNaN(descriptor)) {
+        sqlCommand = "SELECT id, title, entry_time FROM posts"
     }
+    else {
+        sqlCommand = "SELECT * FROM posts WHERE id=" + descriptor;
+    }
+
     con.query(sqlCommand, function (err, rows) {
         if (err) {
-            console.log("ERROR RETRIEVING POSTS FROM MYSQL: ", err);
+            console.log("ERROR RETRIEVING POSTS' INFO FROM MYSQL: ", err);
             return callback(err, null);
         }
         else {
-            console.log("Got 'em!")
-            return callback(null, rows)
+            console.log("Got 'em!", rows)
+            return callback(null, rows);
         }
     });
-
 }
+
+
 

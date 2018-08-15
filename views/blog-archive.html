@@ -2,6 +2,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo|Roboto&amp;subset=greek-ext,korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href="/styles/blog-archive.css" type="text/css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,69 +17,28 @@
         </div>
     </header>
     <div id="container">
-        <div id="posts-list">
-            <div id="post-container">
-                <a class="post-title">You say that you're leaving, but I don't think i should let go. It would've meant so much if you'd looked
-                    me in the eyeeee~~!</a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Synagogue.</a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Third time's the charm... </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> keke. do u saranghae? S2 </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Man naps on a hard wooden table after a night of no sleep are the best naps. </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Winnie Harlow is a dalmation babe. </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Blog post #4 baby!!! </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> This is a blog post title.</a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> You must think that I'm a fooOOOoOoool </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> I'm just protecting my innocence </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> You must think that I'm stooooopid </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> I'm going to vomit up all this food please don't make me eat more. </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-            <div id="post-container">
-                <a class="post-title"> Like Chocolate Cake Boi in Matilda </a>
-                <h4 class="post-date"> Posted on 00/00/00</h4>
-            </div>
-        </div>
+        <div id="posts-list"></div>
     </div>
 
     <script>
-        window.onload = function () {
-            document.body.className += " loaded";
+        function succCB(dataRows) {
+            for (let i = 0; i < dataRows.length; i++) {
+                let postNode = document.createElement("div");
+                postNode.setAttribute("id", "post-container");
+                postNode.innerHTML =
+                    `
+                    <a class=\"post-title\" href=\"/blog/` + dataRows[i].id + `\">` + dataRows[i].title + `</a>
+                    <h4 class=\"post-date\"> Posted on ` + new Date(Date.parse(dataRows[i].entry_time)).toDateString() + `</h4>
+                    `
+                document.getElementById('posts-list').appendChild(postNode);
+            }
         }
 
-        // pure JS way (not easy Jquery way)
+        function errCB(e) {
+            console.log("Error getting list of posts from db. Check blog-archive.html script");
+        }
+
+        // pure JS way (not easy Jquery onload way)
         function ready(callback) {
             // in case this document is already rendered 
             if (document.readyState !== 'loading') callback();
@@ -90,5 +51,21 @@
                 if (document.readyState === 'complete') callback();
             });
         }
+
+        function yeah(cb1, cb2) {
+            $.ajax({
+                url: '/api/posts',
+                type: 'GET',
+                success: function (res) {
+                    cb1(res);
+                },
+                error: function (e) {
+                    cb2(e);
+                },
+            });
+        }
+
+        ready(yeah(succCB, errCB));
+
     </script>
 </body>
