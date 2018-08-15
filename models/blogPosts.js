@@ -1,6 +1,6 @@
 let express = require('express');
 let mysql = require('mysql');
-let env = process.env.NODE_ENV || 'dev';
+let env = process.env.NODE_ENV || 'production';
 let config = require('../config')[env];
 let secret = config.database;
 let secretServer = config.server;
