@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -i ~/.ssh/HaejinJo.pem ec2-user@52.8.197.89

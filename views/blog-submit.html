@@ -27,14 +27,14 @@
     <div id="editor"></div>
     <button id="saveButton">Click to Save Post</button>
 
-    <div class="svg">
+    <span class="svg">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="-263.5 236.5 26 26">
-            <g class="svg-success" style="opacity:0;">
+            <g class="svg-success invisible">
                 <circle cx="-250.5" cy="249.5" r="12" />
                 <path d="M-256.46 249.65l3.9 3.74 8.02-7.8" />
             </g>
         </svg>
-    </div>
+    </span>
 
     <div style="height:20px"></div>
 
@@ -70,6 +70,7 @@
             let cb = function (data) {
                 let checkMarkArea = document.querySelector(".svg");
                 var checkMark = checkMarkArea.innerHTML;
+                let check = document.getElementsByClassName("svg-success");
                 document.getElementById("saveButton").addEventListener("click", function () {
                     checkMarkArea.innerHTML = checkMark;
                 });
