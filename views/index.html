@@ -140,9 +140,11 @@
         <!-- Contact Footer!  -->
         <section id="footer">
             <div id="footer-blurb">
-                <h2> Let's start talking </h2>
-                <img style="display:inline;" src=/images/footer_face.png>
-                <p>No, really. I think we'd be great together. For starters...</p>
+                <div id="footer-header">
+                    <h2> Let's start talking </h2>
+                    <img style="width:60px;height:64px;" src=/images/footer_face.png>
+                </div>
+                <p>No, really. I think we'd be great together. May I suggest the following?</p>
 
                 <ul>
                     <li> formally summon me at:
@@ -150,7 +152,8 @@
                     </li>
                     <li> see all this stuff (and more!) in
                         <a href="/files/Jo_Haejin_Resume.pdf">resume</a> form.</li>
-                    <li> be my friend on my poor, neglected social media gaccounts (see below) </li>
+                    <li> be my friend on my poor, neglected social media accounts (
+                        <a id="addMe">see below</a>) </li>
                 </ul>
             </div>
             <div id="social-button-wrapper">
@@ -213,6 +216,12 @@
                     scrollTop: $("#footer").offset().top - 90
                 },
                     'slow');
+            });
+
+            $(addMe).click(function () {
+                $('html,body').animate({
+                    scrollTop: $(targetId).offset().top - 90
+                }, 'slow');
             });
 
         });
