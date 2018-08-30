@@ -184,14 +184,14 @@ a:hover {
 	align-items: center;
 }
 
-#aboutbar:before {
+/* #aboutbar:before {
 	width: 50vw;
 	content: "";
 	left: 25vw;
 	position: absolute;
 	border-bottom: 1px solid lightgrey;
 	padding-top: 1rem;
-}
+} */
 
 .projects {
 	display: grid;
