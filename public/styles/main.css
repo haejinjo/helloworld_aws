@@ -213,9 +213,14 @@ a:hover {
 }
 .project-link-img {
     display: flex;
-    height: auto;
+    height: 200px;
     width: 100%;
     align-content: center;
+    object-fit: cover;
+}
+
+#footer-blurb {
+	padding-left: 10rem;
 }
 
 /* Tablet */
