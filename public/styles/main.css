@@ -40,12 +40,13 @@ div {
 header {
 	display: flex;
 	justify-content: flex-end;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     padding: 0.8em;
     position: fixed;
     z-index: 1;
     background: linear-gradient(#fefefd 60%, #FFFFFF00);
 	width: 100%;
+	height: 100px;
 }
 
 .navlist {
@@ -61,7 +62,6 @@ header {
 section {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	min-height: 100vh;
 	position: relative;
 }
@@ -218,6 +218,7 @@ a:hover {
     align-content: center;
 }
 
+/* Tablet */
 @media only screen and (min-width: 768px) {
 	.navlist {
 		display: flex;
@@ -236,17 +237,18 @@ a:hover {
 	.projects {
 		height: 100vh;
 	}
-}
 
-#footer {
+	#footer {
 	
     display: flex;
     flex-direction: column;
-    padding-left: 10rem;
+}
 
 }
 
-@media only screen and (min-width: 968px) {
+
+
+@media only screen and (min-width: 1024px) {
 	#intro {
 		display: flex;
 		flex: column wrap;
