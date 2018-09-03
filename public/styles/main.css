@@ -35,7 +35,7 @@ div {
 
 .wrapper {
 	display: grid;
-    grid-template-rows: 100vh 100vh 100vh 100vh;
+    grid-template-rows: 100vh 100vh auto 100vh;
     position: absolute;
     top: 6rem;
 }
