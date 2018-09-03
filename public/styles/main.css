@@ -229,7 +229,7 @@ a:hover {
 }
 
 #footer-blurb {
-	padding-left: 10rem;
+	padding-left: 5rem;
 }
 
 /* Tablet */
@@ -255,7 +255,11 @@ a:hover {
 	#footer {
 	
     display: flex;
-    flex-direction: column;
+	flex-direction: column;
+}
+
+#footer-blurb {
+	padding-left: 10rem;
 }
 
 }
